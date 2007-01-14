@@ -62,15 +62,15 @@ public class Employee {
    // </editor-fold>
  
   // <editor-fold defaultstate="collapsed" desc=" Property:   String birthdate ">
-  private String birthdate;
+  private java.sql.Date dob;
 /**
   *   @hibernate.property
   */
-   public String getBirthdate () {
-      return birthdate;
+   public java.sql.Date getdob () {
+      return dob;
    } 
-   public void setBirthdate (String birthdate) {
-      this.birthdate = birthdate;
+   public void setdob (java.sql.Date dob) {
+      this.dob = dob;
    }
    // </editor-fold>
  
@@ -87,16 +87,16 @@ public class Employee {
    }
    // </editor-fold>
 
-   // <editor-fold defaultstate="collapsed" desc=" PrimaryKey:   String id ">
-   private String id;
+  // <editor-fold defaultstate="collapsed" desc=" PrimaryKey:   String id ">
+   private Integer id;
 /**
   *   @hibernate.id
-  *     generator-class="uuid.hex"
+  *     generator-class="increment"
   */
-   public String getId () {
+   public Integer getId () {
       return id;
    } 
-   public void setId (String id) {
+   public void setId (Integer id) {
       this.id = id;
    }
    //</editor-fold>
