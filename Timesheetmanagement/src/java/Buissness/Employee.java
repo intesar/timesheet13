@@ -61,7 +61,7 @@ public class Employee {
    }
    // </editor-fold>
  
-  // <editor-fold defaultstate="collapsed" desc=" Property:   String birthdate ">
+  // <editor-fold defaultstate="collapsed" desc=" Property:   java.sql.Date dob">
   private java.sql.Date dob;
 /**
   *   @hibernate.property
@@ -87,16 +87,17 @@ public class Employee {
    }
    // </editor-fold>
 
-  // <editor-fold defaultstate="collapsed" desc=" PrimaryKey:   String id ">
-   private Integer id;
+  // <editor-fold defaultstate="collapsed" desc=" PrimaryKey:   int id ">
+   //never write Integer its int(changing Integer to int
+   private int id;
 /**
   *   @hibernate.id
   *     generator-class="increment"
   */
-   public Integer getId () {
+   public int getId () {
       return id;
    } 
-   public void setId (Integer id) {
+   public void setId (int id) {
       this.id = id;
    }
    //</editor-fold>
