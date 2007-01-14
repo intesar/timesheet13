@@ -42,7 +42,7 @@ public class Employee_clientdaoTest extends TestCase {
      */
     public void testSave() throws Exception {
         System.out.println("save");
-        
+        //
         employee_client e = null;
         Employee_clientdao instance = new Employee_clientdao();
         
