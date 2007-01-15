@@ -12,8 +12,9 @@ package DAO;
 import Buissness.Employee;
 import Buissness.HibernateUtil;
 import javax.transaction.SystemException;
-import javax.transaction.Transaction;
+
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -24,18 +25,22 @@ public class Employeedao {
     /** Creates a new instance of Employeedao */
     public Employeedao() {
     }
-    public void save(Employee e) throws SystemException{
+    public void save(Employee e) throws SystemException, Exception{
         Session session=null;
         Transaction tx=null;
         try{
             session=HibernateUtil.currentSession();
+            tx = session.beginTransaction();
             session.save(e);
             tx.commit();
             
         }catch(Exception ee){
-        tx.rollback();
+            ee.printStackTrace();
+            tx.rollback();
+            throw ee;
+        
     }finally{
-        session.close();
+        HibernateUtil.closeSession();
     }
     
 }
@@ -44,20 +49,26 @@ public class Employeedao {
         Transaction tx=null;
         try{
             session=HibernateUtil.currentSession();
+            tx=session.beginTransaction();
             session.update(u);
             tx.commit();
         }catch(Exception ee){
+            ee.printStackTrace();
             tx.rollback();
         }finally{
           session.close();  
         }
     }
-    public void delete(Employee u) throws SystemException{
+    public void delete(Employee e) throws SystemException{
         Session session=null;
         Transaction tx=null;
         try{
             session=HibernateUtil.currentSession();
-            session.delete(u);
+            tx=session.beginTransaction();
+            //Employee em=new Employee();
+            e.getId();
+            
+            session.delete(e);
             tx.commit();
         }catch(Exception ee){
             tx.rollback();
@@ -65,8 +76,10 @@ public class Employeedao {
           session.close();  
         }
     }
-    public Employee findbyusername(String username){
-        Session s=HibernateUtil.currentSession();
-        return (Employee) s.createQuery("from Buissness.Employee e where e.username='"+username +"'").uniqueResult();
+    public Employee findbyusername(String name){
+        Session s=HibernateUtil.currentSession();       
+       return (Employee)s.createQuery("from Buissness.Employee e where e.username='"+name+"'").uniqueResult();
+    
+   
     }
 }
